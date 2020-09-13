@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Browse Our Properties {% endblock %}
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">Browse Our Properties</h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">
+            <i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item active"> Browse Services</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="listings" class="py-4">
+  <div class="container">
+    <div class="row">
+      {% if services %}
+      {% for service in services %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card listing-preview">
+          <img class="card-img-top" src="{% static 'img/building.jpg' %}" alt="">
+          <div class="card-img-overlay">
+          </div>
+          <div class="card-body">
+            <div class="listing-heading text-center">
+              <h4 class="text-primary">{{ service.title }}</h4>
+              <p class="text-justify">
+               {{ service.description|truncatewords:40  }}</p>
+            </div>
+            <a href="{% url 'service' service.id %}" class="btn btn-primary btn-block">More Info</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="col-md-12">
+        <p>No services Available</p>
+      </div>
+      {% endif %}
+
+  <!-- pagination -->
+  <div class="row">
+    <div class="col-md-12">
+      {% if services.has_other_pages %}
+      <ul class="pagination">
+        <!-- Previous page button -->
+        {% if services.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ services.previous_page_number }}">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&laquo;</a>
+        </li>
+        {% endif %}
+        <!-- Loop through pages -->
+        {% for i in services.paginator.page_range %}
+        {% if services.number == i %}
+        <li class="page-item active">
+          <a class="page-link">{{i}}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{i}}">{{i}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <!-- Next page button -->
+        {% if services.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ services.next_page_number }}">&raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&raquo;</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section id="services" class="py-5 bg-secondary text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3">
+        <i class="fas fa-feather fa-4x"></i>
+        <hr>
+        <h4>Easy to Use</h4>
+        <p>A simple and useful user interface that helps you to get things done</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-shield-alt fa-4x"></i>
+        <hr>
+        <h4>Totally Secure</h4>
+        <p>All payment methods and technologies consider the data security</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-bolt fa-4x"></i>
+        <hr>
+        <h4>Fastest Delivery</h4>
+        <p>Services that you buy will be delivered as soon as possible</p>
+      </div>
+      <div class="col-md-3">
+        <i class="far fa-handshake fa-4x"></i>
+        <hr>
+        <h4>Customer Happiness</h4>
+        <p>We are always here to help you after or before your purchase</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

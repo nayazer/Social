@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | {{ service.title }} {% endblock %}
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">{{ service.title }}</h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'services' %}">Services</a>
+        </li>
+        <li class="breadcrumb-item active">{{ service.title }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Listing -->
+<section id="listing" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Home Main Image -->
+        <img src="{{ service.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+
+        <!-- Description -->
+        <div class="row mb-5">
+          <div class="text-justify" class="col-md-12">
+            {{ service.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="py-5 bg-secondary text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3">
+        <i class="fas fa-feather fa-4x"></i>
+        <hr>
+        <h4>Easy to Use</h4>
+        <p>A simple and useful user interface that helps you to get things done</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-shield-alt fa-4x"></i>
+        <hr>
+        <h4>Totally Secure</h4>
+        <p>All payment methods and technologies consider the data security</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-bolt fa-4x"></i>
+        <hr>
+        <h4>Fastest Delivery</h4>
+        <p>Services that you buy will be delivered as soon as possible</p>
+      </div>
+      <div class="col-md-3">
+        <i class="far fa-handshake fa-4x"></i>
+        <hr>
+        <h4>Customer Happiness</h4>
+        <p>We are always here to help you after or before your purchase</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
