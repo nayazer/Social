@@ -56,7 +56,7 @@
       {% for service in services %}
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="card listing-preview">
-          <img class="card-img-top" src="{% static 'img/building.jpg' %}" alt="">
+          <img class="card-img-top" src="{{ service.photo_main.url }}" alt="">
           <div class="card-img-overlay">
           </div>
           <div class="card-body">
