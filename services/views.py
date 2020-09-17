@@ -3,7 +3,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Service
 
 def index(request):
-  services = Service.objects.all().order_by('-date')
+  services = Service.objects.all().order_by('-date').filter(is_published=True)
   paginator = Paginator(services, 6)
   page = request.GET.get('page')
   paged_services = paginator.get_page(page)
